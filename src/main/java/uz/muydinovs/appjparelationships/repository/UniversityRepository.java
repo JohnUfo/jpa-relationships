@@ -5,4 +5,7 @@ import uz.muydinovs.appjparelationships.entity.University;
 
 public interface UniversityRepository extends JpaRepository<University,Integer> {
 
+    University getUniversityById(Integer id);
+
+    boolean deleteUniversityById(Integer id);
 }
