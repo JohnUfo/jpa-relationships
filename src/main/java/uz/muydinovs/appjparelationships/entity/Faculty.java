@@ -19,4 +19,9 @@ public class Faculty {
 
     @ManyToOne
     private University university;
+
+    public Faculty(String name, University university) {
+        this.name = name;
+        this.university = university;
+    }
 }
