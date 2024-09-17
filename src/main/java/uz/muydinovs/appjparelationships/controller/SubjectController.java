@@ -5,9 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import uz.muydinovs.appjparelationships.entity.Subject;
-import uz.muydinovs.appjparelationships.entity.University;
 import uz.muydinovs.appjparelationships.repository.SubjectRepository;
-import uz.muydinovs.appjparelationships.repository.UniversityRepository;
 
 import java.util.List;
 
