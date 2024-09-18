@@ -14,27 +14,27 @@ public class SubjectController {
     @Autowired
     SubjectRepository subjectRepository;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public List<Subject> getAll() {
         return subjectRepository.findAll();
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping(value = "/")
     public Subject getById(@RequestParam("id") Integer id) {
         return subjectRepository.findById(id).orElse(null);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public Subject create(@RequestBody Subject subject) {
         return subjectRepository.save(subject);
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
+    @PutMapping
     public Subject update(@RequestBody Subject subject) {
         return subjectRepository.save(subject);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/{id}")
     public void deleteById(@RequestParam("id") Integer id) {
         subjectRepository.deleteById(id);
     }

@@ -10,6 +10,7 @@ import uz.muydinovs.appjparelationships.service.UniversityService;
 import java.util.List;
 
 @RestController()
+@RequestMapping(value = "/university")
 public class UniversityController {
 
     @Autowired
@@ -18,29 +19,29 @@ public class UniversityController {
     @Autowired
     UniversityRepository universityRepository;
 
-    @RequestMapping(value = "/university", method = RequestMethod.GET)
+    @GetMapping
     public List<University> getUniversities() {
         return universityRepository.findAll();
     }
 
-    @RequestMapping(value = "/university/{id}", method = RequestMethod.GET)
+    @GetMapping("/{id}")
     public University getUniversities(@PathVariable("id") Integer id) {
         return universityRepository.getUniversityById(id);
     }
 
 
-    @RequestMapping(value = "/university", method = RequestMethod.POST)
+    @PostMapping
     public String addUniversity(@RequestBody UniversityDto universityDto) {
         universityService.addUniversity(universityDto);
         return "University added successfully";
     }
 
-    @RequestMapping(value = "/university/{id}", method = RequestMethod.PUT)
+    @PutMapping("/{id}")
     public String updateUniversity(@RequestBody UniversityDto universityDto, @PathVariable("id") Integer id) {
-        return universityService.updateUniversity(universityDto,id);
+        return universityService.updateUniversity(universityDto, id);
     }
 
-    @RequestMapping(value = "/university/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping("/{id}")
     public String deleteUniversityById(@PathVariable("id") Integer id) {
         return universityRepository.deleteUniversityById(id) ? "University deleted successfully" : "University deletion failed";
     }

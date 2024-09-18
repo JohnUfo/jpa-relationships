@@ -29,4 +29,7 @@ public class Student {
 
     @ManyToMany
     private List<Subject> subjects;
+
+    @ManyToOne
+    private Group group;
 }

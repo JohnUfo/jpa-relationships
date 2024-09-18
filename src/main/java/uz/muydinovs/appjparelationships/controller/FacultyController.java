@@ -20,22 +20,22 @@ public class FacultyController {
     @Autowired
     FacultyService facultyService;
 
-    @RequestMapping(value = "/faculty", method = RequestMethod.GET)
+    @GetMapping
     public List<Faculty> getFaculties() {
         return facultyRepository.findAll();
     }
 
-    @RequestMapping(value = "/faculty/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/{id}")
     public Faculty getFacultyById(@PathVariable Integer id) {
         return facultyRepository.getFacultyById(id);
     }
 
-    @RequestMapping(value = "/faculty", method = RequestMethod.POST)
+    @PostMapping
     public String addFaculty(@RequestBody FacultyDto facultyDto) {
         return facultyService.addFaculty(facultyDto);
     }
 
-    @RequestMapping(value = "/faculty/{id}", method = RequestMethod.PUT)
+    @DeleteMapping(value = "/faculty/{id}")
     public String addFaculty(@RequestBody FacultyDto facultyDto, @PathVariable("id") Integer id) {
         return facultyService.updateFaculty(facultyDto, id);
     }

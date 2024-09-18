@@ -9,6 +9,7 @@ import uz.muydinovs.appjparelationships.service.AddressService;
 import java.util.List;
 
 @RestController()
+@RequestMapping("/address")
 public class AddressController {
 
     @Autowired
@@ -17,24 +18,24 @@ public class AddressController {
     @Autowired
     AddressService addressService;
 
-    @RequestMapping(value = "/address", method = RequestMethod.GET)
+    @GetMapping
     public List<Address> getAddresses() {
         return addressRepository.findAll();
     }
 
-    @RequestMapping(value = "/address/{id}", method = RequestMethod.GET)
+    @GetMapping("/{id}")
     public Address getAddressById(@PathVariable Integer id) {
         return addressRepository.getAddressesById(id);
     }
 
-    @RequestMapping(value = "/address", method = RequestMethod.POST)
+    @PostMapping
     public String addAddress(@RequestBody Address address) {
         addressRepository.save(address);
         return "Address added successfully";
     }
 
-    @RequestMapping(value = "/address/{id}", method = RequestMethod.PUT)
-    public String addAddress(@RequestBody Address address, @PathVariable("id") Integer id) {
+    @PutMapping("/{id}")
+    public String updateAddress(@RequestBody Address address, @PathVariable("id") Integer id) {
         return addressService.updateAddress(address, id);
     }
 }

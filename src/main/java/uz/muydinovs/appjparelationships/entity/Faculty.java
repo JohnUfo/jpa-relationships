@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity(name = "faculties")
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name","university_id"}))
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

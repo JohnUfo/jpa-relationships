@@ -8,6 +8,8 @@ import uz.muydinovs.appjparelationships.payload.FacultyDto;
 import uz.muydinovs.appjparelationships.repository.FacultyRepository;
 import uz.muydinovs.appjparelationships.repository.UniversityRepository;
 
+import java.util.Optional;
+
 @Service
 public class FacultyService {
 
@@ -23,8 +25,17 @@ public class FacultyService {
     }
 
     public String addFaculty(FacultyDto facultyDto) {
-        University university = universityRepository.getUniversityById(facultyDto.getUniversityId());
-        facultyRepository.save(new Faculty(facultyDto.getName(), university));
+        boolean exists = facultyRepository.existsByNameAndUniversityId(facultyDto.getName(), facultyDto.getUniversityId());
+        if (exists){
+            return "Faculty already exists!";
+        }
+
+        Optional<University> optionalUniversity = universityRepository.findById(facultyDto.getUniversityId());
+        if (optionalUniversity.isEmpty()) {
+            return "University not found!";
+        }
+
+        facultyRepository.save(new Faculty(facultyDto.getName(), optionalUniversity.get()));
         return "Faculty added successfully";
     }
 }

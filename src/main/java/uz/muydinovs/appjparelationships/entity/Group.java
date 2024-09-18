@@ -20,9 +20,6 @@ public class Group {
 
     private String name;
 
-    @OneToMany
-    private List<Student> students;
-
     @ManyToOne
     private Faculty faculty;
 }
