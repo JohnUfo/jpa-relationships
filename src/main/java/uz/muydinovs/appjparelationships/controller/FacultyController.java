@@ -25,9 +25,9 @@ public class FacultyController {
         return facultyRepository.findAll();
     }
 
-    @GetMapping(value = "/{id}")
-    public Faculty getFacultyById(@PathVariable Integer id) {
-        return facultyRepository.getFacultyById(id);
+    @GetMapping(value = "/byUniversityId/{universityId}")
+    public List<Faculty> getFacultiesByUniversityId(@PathVariable Integer universityId) {
+        return facultyRepository.getFacultiesByUniversityId(universityId);
     }
 
     @PostMapping
@@ -35,8 +35,5 @@ public class FacultyController {
         return facultyService.addFaculty(facultyDto);
     }
 
-    @DeleteMapping(value = "/faculty/{id}")
-    public String addFaculty(@RequestBody FacultyDto facultyDto, @PathVariable("id") Integer id) {
-        return facultyService.updateFaculty(facultyDto, id);
-    }
+
 }
